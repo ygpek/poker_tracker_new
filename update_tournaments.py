@@ -28,9 +28,9 @@ def main():
     history_ws = history_sheet.worksheet("History")
     history_df = load_ws(history_ws)[HISTORY_COLS]
 
-    new_game_id = history_df["game_id"].max() + 1
+    new_game_id = history_df["tournament_id"].max() + 1
     source_df = source_df.assign(
-        game_id=new_game_id,
+        tournament_id=new_game_id,
     )[HISTORY_COLS]
 
     for row in source_df.values.tolist():
