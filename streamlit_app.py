@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.set_page_config(page_title="Poker Dashboard", layout="wide", initial_sidebar_state="expanded")
+st.set_page_config(page_title="Poker Statistics", layout="wide", initial_sidebar_state="expanded")
 
 st.title("♠️ Здарова лудики")
 

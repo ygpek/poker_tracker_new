@@ -1,9 +1,11 @@
 import streamlit as st
-from data_load.cash_games import load_cash_games
+from data_load.load_sheet import load_history
 from calcs.cash_stats import calculate_cash_summary
 from ui.game_selector import game_selector
 
 from ui.refresh import refresh_data_button
+
+VARIABLE = "HISTORY_SHEET_ID"
 
 # --- Sidebar ---
 refresh_data_button()
@@ -21,7 +23,7 @@ def highlight_win(val):
 
 st.header("💵 Cash Games")
 
-df = load_cash_games()
+df = load_history(VARIABLE)
 if df.empty:
     st.warning("No cash games found.")
     st.stop()
