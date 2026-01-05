@@ -35,7 +35,11 @@ def game_selector(game_ids, key="game_selector"):
 
         # --- Jump-to selectbox ---
     selected_game = st.selectbox(
-        "Jump to game:", options=game_ids, index=current_index, key=f"{key}_jump", format_func=lambda x: f"Game {x}"
+        "Jump to game:",
+        options=sorted(game_ids, reverse=True),
+        index=current_index,
+        key=f"{key}_jump",
+        format_func=lambda x: f"Game {x}",
     )
 
     # Update session state if selectbox changed
