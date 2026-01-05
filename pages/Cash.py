@@ -3,6 +3,11 @@ from data_load.cash_games import load_cash_games
 from calcs.cash_stats import calculate_cash_summary
 from ui.game_selector import game_selector
 
+from ui.refresh import refresh_data_button
+
+# --- Sidebar ---
+refresh_data_button()
+
 
 def highlight_win(val):
     if val > 0:
@@ -52,6 +57,10 @@ st.dataframe(
     game_df.style.applymap(
         highlight_win,
         subset=["win"],
+    ).format(
+        {
+            "buy-in": "{:.3f}",
+        }
     ),
     hide_index=True,
     use_container_width=True,
