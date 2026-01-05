@@ -10,6 +10,8 @@ def game_selector(game_ids, key="game_selector"):
 
     col1, col2, col3 = st.columns([1, 2, 1])
 
+    current_index = st.session_state[key]
+
     with col1:
         st.session_state[key] = max(0, st.session_state[key])  # safety
         st.button(
@@ -30,5 +32,14 @@ def game_selector(game_ids, key="game_selector"):
 
     with col2:
         st.markdown(f"### Game #{game_ids[st.session_state[key]]} " f"({st.session_state[key]+1}/{len(game_ids)})")
+
+        # --- Jump-to selectbox ---
+    selected_game = st.selectbox(
+        "Jump to game:", options=game_ids, index=current_index, key=f"{key}_jump", format_func=lambda x: f"Game {x}"
+    )
+
+    # Update session state if selectbox changed
+    if selected_game != game_ids[st.session_state[key]]:
+        st.session_state[key] = game_ids.index(selected_game)
 
     return game_ids[st.session_state[key]]
