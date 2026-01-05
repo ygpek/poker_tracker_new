@@ -1,1 +1,5 @@
+protobuf
 streamlit
+pandas
+gspread
+google-auth
