@@ -1,0 +1,32 @@
+name: Update Cash Games History
+
+on:
+  workflow_dispatch:  # manual trigger
+
+jobs:
+  update_cash_games:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout repo
+      - uses: actions/checkout@v3
+
+      # Setup Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.13
+
+      # Install dependencies
+      - name: Install dependencies
+        run: |
+          pip install gspread google-auth pandas
+
+      # Run update script
+      - name: Update Cash Games
+        env:
+          GCP_SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+          NEW_TOURNAMENT_ID: ${{ secrets.NEW_TOURNAMENT_ID }}
+          TOURNAMENT_HISTORY_ID: ${{ secrets.TOURNAMENT_HISTORY_ID }}
+        run: |
+          python update_games_cash.py
