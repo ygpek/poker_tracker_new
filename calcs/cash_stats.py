@@ -23,4 +23,4 @@ def calculate_cash_summary(df: pd.DataFrame) -> pd.DataFrame:
         variance_won=("win", "std"),
     ).reset_index()
 
-    return statistics_advanced.sort(by="kc_won", ascending=False)
+    return statistics_advanced.sort_values(by="kc_won", ascending=False)
