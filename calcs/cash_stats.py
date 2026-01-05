@@ -23,6 +23,8 @@ def calculate_cash_summary(df: pd.DataFrame) -> pd.DataFrame:
         variance_won=("win", "std"),
     ).reset_index()
 
+    statistics_advanced = statistics_advanced[statistics_advanced["games_played"] >= 3]
+
     statistics_advanced.columns = [
         "Player",
         "Total Games",
@@ -48,4 +50,4 @@ def calculate_cash_summary(df: pd.DataFrame) -> pd.DataFrame:
     for col in numeric_cols:
         statistics_advanced[col] = statistics_advanced[col].round(2)
 
-    return statistics_advanced.sort_values(by="kc_won", ascending=False)
+    return statistics_advanced.sort_values(by="Kc won", ascending=False)
