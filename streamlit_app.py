@@ -1,17 +1,13 @@
 import streamlit as st
 
-st.set_page_config(page_title="Poker Statistics", layout="wide")
+# --- Ensure sidebar is visible ---
+st.set_page_config(page_title="Poker Statistics", layout="wide", initial_sidebar_state="expanded")  # <- key line
 
 st.title("♠️ Poker Statistics")
 
-st.markdown(
-    """
-Welcome to the **Poker Statistics App**.
-
-Use the **sidebar** to navigate:
-- 💵 Cash Games
-- 🏆 Tournaments 
-
-This app shows **read-only statistics** calculated from game history.
-"""
-)
+# Sidebar content
+with st.sidebar:
+    st.header("Controls")
+    if st.button("🔄 Refresh data"):
+        st.cache_data.clear()
+        st.success("Data refreshed")
