@@ -1,4 +1,4 @@
-name: Update Cash Games History
+name: Update Tournaments History
 
 on:
   workflow_dispatch:  # manual trigger
