@@ -21,11 +21,11 @@ def main():
     gc = gspread.authorize(creds)
 
     source_sheet = gc.open_by_key(POKER_SHEET_ID)
-    source_ws = source_sheet.worksheet("History")
+    source_ws = source_sheet.worksheet("Tournament")
     source_df = load_ws(source_ws)[POKER_COLS]
 
     history_sheet = gc.open_by_key(HISTORY_SHEET_ID)
-    history_ws = history_sheet.worksheet("Tournament")
+    history_ws = history_sheet.worksheet("History")
     history_df = load_ws(history_ws)[HISTORY_COLS]
 
     new_game_id = history_df["game_id"].max() + 1
