@@ -26,7 +26,7 @@ jobs:
       - name: Update Cash Games
         env:
           GCP_SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT }}
-          SOURCE_CASH_SHEET_ID: ${{ secrets.POKER_SHEET_ID }}
-          HISTORY_CASH_SHEET_ID: ${{ secrets.HISTORY_SHEET_ID }}
+          POKER_SHEET_ID: ${{ secrets.POKER_SHEET_ID }}
+          HISTORY_SHEET_ID: ${{ secrets.HISTORY_SHEET_ID }}
         run: |
           python update_games_cash.py
