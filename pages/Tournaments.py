@@ -27,7 +27,7 @@ st.subheader("Game history")
 game_ids = sorted(df["tournament_id"].unique())
 selected_game = tournament_selector(game_ids, key="tournament_games")
 
-game_df = df[df["game_id"] == selected_game].sort_values(by="place", ascending=True, ignore_index=True)
+game_df = df[df["tournament_id"] == selected_game].sort_values(by="place", ascending=True, ignore_index=True)
 st.dataframe(
     game_df.style.applymap(
         highlight_win,
