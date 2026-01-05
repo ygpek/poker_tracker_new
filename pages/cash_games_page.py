@@ -19,7 +19,16 @@ st.dataframe(
     summary_df.style.background_gradient(
         subset=["Kc won"],  # apply gradient only to this column
         cmap="RdYlGn",  # Red → Yellow → Green
-    ).hide(axis="index"),
+    ).format(
+        {
+            "Total buy-ins": "{:.2f}",
+            "Buy-ins per game": "{:.2f}",
+            "Kc won": "{:.2f}",
+            "Kc won per game": "{:.2f}",
+            "Win standard deviation": "{:.2f}",
+        }
+    ),
+    hide_index=True,
     use_container_width=True,
 )
 
@@ -28,8 +37,9 @@ st.subheader("Game history")
 game_ids = sorted(df["game_id"].unique())
 selected_game = game_selector(game_ids, key="cash_games")
 
-game_df = df[df["game_id"] == selected_game]
+game_df = df[df["game_id"] == selected_game].sort_values(by="win", ascending=False, ignore_index=True)
 st.dataframe(
-    game_df.style.hide(axis="index"),
+    game_df,
+    hide_index=True,
     use_container_width=True,
 )

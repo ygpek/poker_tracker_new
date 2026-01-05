@@ -50,4 +50,4 @@ def calculate_cash_summary(df: pd.DataFrame) -> pd.DataFrame:
     for col in numeric_cols:
         statistics_advanced[col] = statistics_advanced[col].round(2)
 
-    return statistics_advanced.sort_values(by="Kc won", ascending=False)
+    return statistics_advanced.sort_values(by="Kc won", ascending=False, ignore_index=True)
