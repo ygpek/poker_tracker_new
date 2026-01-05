@@ -26,7 +26,9 @@ def calculate_stats_tournaments(df: pd.DataFrame) -> pd.DataFrame:
 
     statistics_advanced = statistics_advanced[statistics_advanced["total_itm"] >= 1]
 
-    statistics_advanced["itm_percentage"] = statistics_advanced["total_itm"] / statistics_advanced["total_played"]
+    statistics_advanced["itm_percentage"] = (
+        statistics_advanced["total_itm"] / statistics_advanced["total_played"]
+    ) * 100
 
     statistics_advanced = statistics_advanced[
         [

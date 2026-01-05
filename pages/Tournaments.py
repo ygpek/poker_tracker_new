@@ -37,7 +37,7 @@ summary_df = calculate_stats_tournaments(df)
 st.dataframe(
     summary_df.style.background_gradient(
         subset=["Total ITM"],  # apply gradient only to this column
-        cmap="RdYlGn",  # Red → Yellow → Green
+        cmap="YlGn",  # Red → Yellow → Green
     ).format(
         {
             "% ITM": "{:.2f}",
