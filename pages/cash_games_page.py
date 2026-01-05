@@ -17,7 +17,7 @@ summary_df = calculate_cash_summary(df)
 # --- Gradient coloring for kc_won ---
 st.dataframe(
     summary_df.style.background_gradient(
-        subset=["Kc won per game"],  # apply gradient only to this column
+        subset=["Kc won"],  # apply gradient only to this column
         cmap="RdYlGn",  # Red → Yellow → Green
     ).hide(axis="index"),
     use_container_width=True,
