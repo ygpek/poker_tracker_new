@@ -22,7 +22,7 @@ st.set_page_config(page_title="Cash", layout="wide", initial_sidebar_state="expa
 
 refresh_data_button()
 
-st.header("💵 Cash Games")
+st.header("💵 Кэш")
 
 df = load_history(VARIABLE)
 if df.empty:

@@ -3,6 +3,7 @@ import streamlit as st
 from ui.refresh import refresh_data_button
 from ui.tournament_selector import tournament_selector
 from data_load.load_sheet import load_history
+from calcs.tournament_stats import calculate_stats_tournaments
 
 VARIABLE = "TOURNAMENT_HISTORY_ID"
 
@@ -17,9 +18,34 @@ def highlight_win(val):
     return f"color: {color}"
 
 
+st.set_page_config(page_title="Tournaments", layout="wide", initial_sidebar_state="expanded")
+
 refresh_data_button()
 
+st.header("🏆 Турниры")
+
 df = load_history(VARIABLE)
+if df.empty:
+    st.warning("No cash games found.")
+    st.stop()
+
+# --- Summary table ---
+st.subheader("Summary Statistics")
+summary_df = calculate_stats_tournaments(df)
+
+# --- Gradient coloring for kc_won ---
+st.dataframe(
+    summary_df.style.background_gradient(
+        subset=["Total ITM"],  # apply gradient only to this column
+        cmap="RdYlGn",  # Red → Yellow → Green
+    ).format(
+        {
+            "% ITM": "{:.2f}",
+        }
+    ),
+    hide_index=True,
+    width="stretch",
+)
 
 
 # --- Game selector ---
