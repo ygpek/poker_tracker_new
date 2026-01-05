@@ -1,5 +1,8 @@
 import streamlit as st
 
+from ui.refresh import refresh_data_button
+
+
 st.set_page_config(page_title="Poker Statistics", layout="wide", initial_sidebar_state="expanded")
 
 st.title("♠️ Здарова лудики")
@@ -17,3 +20,5 @@ st.markdown(
 Спасибо что вы с нами спустя года!
 """
 )
+
+refresh_data_button()
