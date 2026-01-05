@@ -7,9 +7,6 @@ from ui.refresh import refresh_data_button
 
 VARIABLE = "HISTORY_SHEET_ID"
 
-# --- Sidebar ---
-refresh_data_button()
-
 
 def highlight_win(val):
     if val > 0:
@@ -20,6 +17,10 @@ def highlight_win(val):
         color = ""
     return f"color: {color}"
 
+
+st.set_page_config(page_title="Cash", layout="wide", initial_sidebar_state="expanded")
+
+refresh_data_button()
 
 st.header("💵 Cash Games")
 
