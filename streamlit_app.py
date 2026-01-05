@@ -10,7 +10,7 @@ Welcome to the **Poker Statistics App**.
 
 Use the **sidebar** to navigate:
 - 💵 Cash Games
-- 🏆 Tournaments (coming soon)
+- 🏆 Tournaments 
 
 This app shows **read-only statistics** calculated from game history.
 """
