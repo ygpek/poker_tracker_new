@@ -1,13 +1,19 @@
 import streamlit as st
 
-# --- Ensure sidebar is visible ---
-st.set_page_config(page_title="Poker Statistics", layout="wide", initial_sidebar_state="expanded")  # <- key line
+st.set_page_config(page_title="Poker Dashboard", layout="wide", initial_sidebar_state="expanded")
 
-st.title("♠️ Poker Statistics")
+st.title("♠️ Здарова лудики")
 
-# Sidebar content
-with st.sidebar:
-    st.header("Controls")
-    if st.button("🔄 Refresh data"):
-        st.cache_data.clear()
-        st.success("Data refreshed")
+# Intro text
+st.markdown(
+    """
+Всем привет тут будет вся статистика того как круто мы играем в карты
+
+В меню слева можно выбрать, статистику по какой дисциплине вы бы хотели проверить
+
+- 💵 Кэш  
+- 🏆 Турниры 
+
+Спасибо что вы с нами спустя года!
+"""
+)
