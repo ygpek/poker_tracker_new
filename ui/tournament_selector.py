@@ -8,6 +8,7 @@ def tournament_selector(game_ids, key="tournament_selector"):
     if key not in st.session_state:
         st.session_state[key] = len(game_ids) - 1  # start at latest game
 
+    game_ids = sorted(game_ids, reverse=True)
     current_index = st.session_state[key]
 
     col1, col2, col3 = st.columns([1, 2, 1])
@@ -38,7 +39,7 @@ def tournament_selector(game_ids, key="tournament_selector"):
     # --- Jump-to selectbox ---
     selected_game = st.selectbox(
         "Jump to game:",
-        options=sorted(game_ids, reverse=True),
+        options=game_ids,
         index=current_index,
         key=f"{key}_jump",
         format_func=lambda x: f"Game {x}",
