@@ -15,10 +15,3 @@ Use the **sidebar** to navigate:
 This app shows **read-only statistics** calculated from game history.
 """
 )
-
-with st.sidebar:
-    st.header("Controls")
-
-    if st.button("🔄 Refresh data"):
-        st.cache_data.clear()
-        st.success("Data refreshed")
