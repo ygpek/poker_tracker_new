@@ -2,6 +2,7 @@ import streamlit as st
 from data_load.load_sheet import load_history
 from calcs.cash_stats import calculate_cash_summary
 from ui.game_selector import game_selector
+from data_load.trigger_workflow import trigger_workflow
 
 from ui.refresh import refresh_data_button
 
@@ -68,3 +69,14 @@ st.dataframe(
     hide_index=True,
     width="stretch",
 )
+# --- Add vertical space before buttons ---
+st.markdown("<br><br>", unsafe_allow_html=True)
+
+# --- Workflow button at bottom ---
+st.subheader("🔄 Update Cash Games History")
+if st.button("Update Cash Games Data"):
+    success = trigger_workflow("update_cash.yml")
+    if success:
+        st.success("Cash games update triggered ✅")
+    else:
+        st.error("Failed to trigger workflow ❌")
