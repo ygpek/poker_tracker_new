@@ -18,10 +18,17 @@ players = sorted(set(debts_df["from"]).union(set(debts_df["to"])))
 
 # --- Sidebar ---
 with st.sidebar:
-    st.header("Actions")
+    st.header("Filters")
+
+    payer_filter = st.selectbox("Show debts for payer:", options=["All"] + players)
+
     if st.button("🔄 Refresh"):
         st.cache_data.clear()
         st.rerun()
+
+# --- Apply filter ---
+if payer_filter != "All":
+    active_debts = active_debts[active_debts["from_player"] == payer_filter]
 
 # --- Layout ---
 left, right = st.columns([2, 1])
