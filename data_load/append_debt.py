@@ -1,5 +1,5 @@
 from data_load.gs_client import get_gspread_client
-from gc_pandas_utils import load_ws
+from data_load.gc_pandas_utils import load_ws
 import os
 
 DEBTS_SHEET_ID = os.environ["DEBTS_SHEET_ID"]
