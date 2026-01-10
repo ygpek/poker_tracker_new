@@ -8,7 +8,7 @@ def render_add_debt_form(players):
     with st.form("add_debt_form"):
         from_player = st.selectbox("From (who owes)", players, placeholder="Игорь")
         to_player = st.selectbox("To (who is owed)", players)
-        amount = st.number_input("Amount", min_value=1, step=1)
+        amount = st.number_input("Amount", min_value=1, step=1, value=100)
         note = st.text_input("Note")
 
         submitted = st.form_submit_button("Add debt")
