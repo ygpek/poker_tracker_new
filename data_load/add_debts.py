@@ -2,7 +2,7 @@ import os
 import json
 import gspread
 from google.oauth2.service_account import Credentials
-from data_load.gc_pandas_utils import load_ws
+from gc_pandas_utils import load_ws
 from calculate_debts import calculate_debts
 
 
