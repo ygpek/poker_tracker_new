@@ -28,7 +28,7 @@ with st.sidebar:
 
 # --- Apply filter ---
 if payer_filter != "All":
-    active_debts = active_debts[active_debts["from_player"] == payer_filter]
+    active_debts = active_debts[active_debts["from"] == payer_filter]
 
 # --- Layout ---
 left, right = st.columns([2, 1])
