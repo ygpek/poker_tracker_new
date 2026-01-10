@@ -29,4 +29,4 @@ jobs:
           POKER_SHEET_ID: ${{ secrets.POKER_SHEET_ID }}
           DEBTS_SHEET_ID: ${{ secrets.DEBTS_SHEET_ID }}
         run: |
-          python data_transfer/add_debts.py
+          python data_load/add_debts.py
