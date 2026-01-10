@@ -1,0 +1,32 @@
+name: Update Debts History after last Game
+
+on:
+  workflow_dispatch:  # manual trigger
+
+jobs:
+  update_debts:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout repo
+      - uses: actions/checkout@v3
+
+      # Setup Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.13
+
+      # Install dependencies
+      - name: Install dependencies
+        run: |
+          pip install gspread google-auth pandas
+
+      # Run update script
+      - name: Calculate and Add New Debts
+        env:
+          GCP_SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+          POKER_SHEET_ID: ${{ secrets.POKER_SHEET_ID }}
+          DEBTS_SHEET_ID: ${{ secrets.DEBTS_SHEET_ID }}
+        run: |
+          python data_transfer/add_debts.py
