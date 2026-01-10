@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import os
 
-from data_transfer.gs_client import get_gspread_client
+from data_load.gs_client import get_gspread_client
 
 
 @st.cache_data
