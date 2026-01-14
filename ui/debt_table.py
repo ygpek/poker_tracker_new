@@ -24,4 +24,5 @@ def render_debt_table(debts_df):
         with col4:
             if st.button("✅ Paid", key=f"paid_{row['debt_id']}"):
                 mark_debt_as_paid(row["debt_id"])
+                st.cache_data.clear()
                 st.rerun()

@@ -24,4 +24,5 @@ def render_add_debt_form(players):
                 }
             )
             st.success("Debt added")
+            st.cache_data.clear()
             st.rerun()
