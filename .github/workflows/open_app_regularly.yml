@@ -2,16 +2,13 @@ name: Keep Streamlit App Awake
 
 on:
   schedule:
-    # Every 10 hours
     - cron: "0 */10 * * *"
   workflow_dispatch:
 
 jobs:
   ping:
     runs-on: ubuntu-latest
-
     steps:
       - name: Ping Streamlit app
         run: |
-          echo "Pinging Streamlit app..."
-          curl -L --max-time 30 https://kartydengidvatuza.streamlit.app/
+          curl -I --max-time 30 https://kartydengidvatuza.streamlit.app/ || true
