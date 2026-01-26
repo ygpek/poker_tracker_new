@@ -3,7 +3,6 @@ name: Keep Streamlit App Awake
 on:
   schedule:
     - cron: "0 */10 * * *"
-  workflow_dispatch:
 
 jobs:
   ping:
