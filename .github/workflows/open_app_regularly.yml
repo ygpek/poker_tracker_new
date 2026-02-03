@@ -20,6 +20,6 @@ jobs:
 
 
       # Run update script
-      - name: Calculate and Add New Debts
+      - name: Open App
         run: |
           python data_load/browse_web.py
