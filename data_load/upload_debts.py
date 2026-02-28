@@ -2,7 +2,7 @@ import os
 import json
 import gspread
 from google.oauth2.service_account import Credentials
-from gc_pandas_utils import load_ws
+from data_load.gc_pandas_utils import load_ws
 
 DEBTS_SHEET_ID = os.environ["DEBTS_SHEET_ID"]
 DEBTS_COLS = ["debt_id", "from", "to", "amount", "paid", "note"]
