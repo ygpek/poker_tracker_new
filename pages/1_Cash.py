@@ -70,13 +70,18 @@ st.dataframe(
     summary_df.style.background_gradient(
         subset=["Kc won"],  # apply gradient only to this column
         cmap="RdYlGn",  # Red → Yellow → Green
-    ).format(
+    )
+    .format(
         {
             "Total buy-ins": "{:.2f}",
             "Buy-ins per game": "{:.2f}",
             "Kc won per game": "{:.2f}",
             "Win standard deviation": "{:.2f}",
             "% in profit": "{:.2f}%",
+        },
+    )
+    .format(
+        {
             "Current Form": style_form,
         },
         escape="html",
