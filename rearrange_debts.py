@@ -31,7 +31,7 @@ def main():
         right_on="from",
         how="outer",
     ).assign(
-        player=lambda df: np.where(df["to"].isna(), df["from"], df["to"]),
+        Player=lambda df: np.where(df["to"].isna(), df["from"], df["to"]),
         amount_to_receive=lambda df: df["amount_to_receive"].fillna(0),
         amount_to_send=lambda df: df["amount_to_send"].fillna(0),
         win=lambda df: df["amount_to_receive"] - df["amount_to_send"],
