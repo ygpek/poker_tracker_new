@@ -44,6 +44,7 @@ st.dataframe(
             "Buy-ins per game": "{:.2f}",
             "Kc won per game": "{:.2f}",
             "Win standard deviation": "{:.2f}",
+            "% in profit": "{:.2f}%",
         }
     ),
     hide_index=True,
@@ -55,7 +56,9 @@ st.subheader("Game history")
 game_ids = sorted(df["game_id"].unique())
 selected_game = game_selector(game_ids, key="cash_games")
 
-game_df = df[df["game_id"] == selected_game].sort_values(by="win", ascending=False, ignore_index=True)
+game_df = df[df["game_id"] == selected_game][["game_id", "Player", "buy-in", "win"]].sort_values(
+    by="win", ascending=False, ignore_index=True
+)
 st.dataframe(
     game_df.style.applymap(
         highlight_win,

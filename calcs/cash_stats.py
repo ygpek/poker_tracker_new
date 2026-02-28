@@ -29,7 +29,10 @@ def calculate_cash_summary(df: pd.DataFrame) -> pd.DataFrame:
         percent_profit=("profit_flag", "mean"),
     ).reset_index()
 
-    statistics_advanced = statistics_advanced[statistics_advanced["games_played"] >= 3]
+    statistics_advanced = statistics_advanced[statistics_advanced["games_played"] >= 3].assign(
+        form=lambda x: x.index.map(form),
+        percent_profit=lambda x: x * 100,
+    )
 
     statistics_advanced["form"] = statistics_advanced.index.map(form)
 
@@ -55,6 +58,7 @@ def calculate_cash_summary(df: pd.DataFrame) -> pd.DataFrame:
         "Max win",
         "Min win",
         "Win standard deviation",
+        "% in profit",
     ]
 
     for col in numeric_cols:
