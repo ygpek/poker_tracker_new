@@ -11,6 +11,11 @@ def calculate_cash_summary(df: pd.DataFrame) -> pd.DataFrame:
     )
 
     grouped = df.groupby("Player")
+    form = {}
+
+    for player, group in grouped:
+        last_three = group.sort_values("game_id").tail(3)
+        form[player] = last_three["profit_flag"].tolist()
 
     statistics_advanced = grouped.agg(
         games_played=("game_id", "nunique"),
@@ -21,9 +26,12 @@ def calculate_cash_summary(df: pd.DataFrame) -> pd.DataFrame:
         won_max=("win", "max"),
         lose_max=("win", "min"),
         variance_won=("win", "std"),
+        percent_profit=("profit_flag", "mean"),
     ).reset_index()
 
     statistics_advanced = statistics_advanced[statistics_advanced["games_played"] >= 3]
+
+    statistics_advanced["form"] = statistics_advanced.index.map(form)
 
     statistics_advanced.columns = [
         "Player",
@@ -35,6 +43,8 @@ def calculate_cash_summary(df: pd.DataFrame) -> pd.DataFrame:
         "Max win",
         "Min win",
         "Win standard deviation",
+        "% in profit",
+        "Current Form",
     ]
 
     numeric_cols = [
