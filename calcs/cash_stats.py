@@ -46,7 +46,7 @@ def calculate_cash_summary(df: pd.DataFrame) -> pd.DataFrame:
         "Min win",
         "Win standard deviation",
         "% in profit",
-        "Current Form",
+        # "Current Form",
     ]
 
     numeric_cols = [
