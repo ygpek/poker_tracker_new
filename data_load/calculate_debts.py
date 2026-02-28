@@ -1,9 +1,7 @@
 import pandas as pd
-from add_new_game import return_new_game
 
 
-def calculate_debts() -> pd.DataFrame:
-    new_game = return_new_game()
+def calculate_debts(new_game) -> pd.DataFrame:
     payers = new_game[new_game["win"] < 0].sort_values(by="win").reset_index(drop=True)
     payees = new_game[new_game["win"] > 0].sort_values(by="win", ascending=False).reset_index(drop=True)
     i, j = (
