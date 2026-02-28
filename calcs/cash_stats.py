@@ -34,7 +34,6 @@ def calculate_cash_summary(df: pd.DataFrame) -> pd.DataFrame:
         percent_profit=lambda x: x["percent_profit"] * 100,
     )
 
-    statistics_advanced["form"] = statistics_advanced.index.map(form)
 
     statistics_advanced.columns = [
         "Player",
