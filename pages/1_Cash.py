@@ -23,6 +23,32 @@ def highlight_win(val):
     return f"color: {color}"
 
 
+def style_form(val):
+    if not isinstance(val, list):
+        return ""
+
+    styled = ""
+
+    for char in val:
+        if char == "+":
+            color = "green"
+        elif char == "-":
+            color = "red"
+
+        styled += f"""
+        <span style="
+            display:inline-block;
+            width:14px;
+            height:14px;
+            border-radius:50%;
+            background-color:{color};
+            margin-right:4px;">
+        </span>
+        """
+
+    return styled
+
+
 st.set_page_config(page_title="Cash", layout="wide", initial_sidebar_state="expanded")
 
 refresh_data_button()
@@ -51,7 +77,9 @@ st.dataframe(
             "Kc won per game": "{:.2f}",
             "Win standard deviation": "{:.2f}",
             "% in profit": "{:.2f}%",
-        }
+            "Current Form": style_form,
+        },
+        escape="html",
     ),
     hide_index=True,
     width="stretch",
