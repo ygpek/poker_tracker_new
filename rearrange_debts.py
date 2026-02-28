@@ -19,7 +19,7 @@ def main():
         .reset_index()
     )
     payees_grouped = (
-        active_debts.groupby("from")
+        active_debts.groupby("to")
         .agg(
             amount_to_receive=("amount", "sum"),
         )
