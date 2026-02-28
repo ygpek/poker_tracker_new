@@ -9,7 +9,7 @@ from data_load.gc_pandas_utils import load_ws
 POKER_SHEET_ID = os.environ["POKER_SHEET_ID"]
 HISTORY_SHEET_ID = os.environ["HISTORY_SHEET_ID"]
 POKER_COLS = ["Player", "buy-in", "win"]
-HISTORY_COLS = ["game_id", "Player", "buy-in", "win"]
+HISTORY_COLS = ["game_id", "Player", "buy-in", "win", "profit_flag"]
 
 
 def main():
