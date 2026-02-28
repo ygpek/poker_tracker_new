@@ -1,4 +1,4 @@
-name: Update Debts History after last Game
+name: Rearrange Debts Once in a Time
 
 on:
   workflow_dispatch:  # manual trigger
