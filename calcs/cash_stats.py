@@ -15,7 +15,7 @@ def calculate_cash_summary(df: pd.DataFrame) -> pd.DataFrame:
 
     for player, group in grouped:
         last_three = group.sort_values("game_id").tail(3)
-        form[player] = last_three["profit_flag"].tolist()
+        form[player] = last_three["profit_flag"].tolist().reverse()
 
     statistics_advanced = grouped.agg(
         games_played=("game_id", "nunique"),
@@ -30,7 +30,7 @@ def calculate_cash_summary(df: pd.DataFrame) -> pd.DataFrame:
     ).reset_index()
 
     statistics_advanced = statistics_advanced[statistics_advanced["games_played"] >= 3].assign(
-        form=lambda x: x["Player"].map(form).reverse(),
+        form=lambda x: x["Player"].map(form),
         percent_profit=lambda x: x["percent_profit"] * 100,
     )
 
