@@ -8,30 +8,6 @@ from ui.refresh import refresh_data_button
 VARIABLE = "HISTORY_SHEET_ID"
 
 
-def render_form_dots(results):
-    if not isinstance(results, list):
-        return ""
-
-    dots_html = ""
-
-    for value in results:
-        color = "green" if value > 0 else "red"
-        dots_html += f"""
-            <span 
-                  style="
-                      display:inline-block;
-                      width:12px;
-                      height:12px;
-                      border-radius:50%;
-                      background-color:{color};
-                      margin-right:4px;
-                  ">
-            </span>
-        """
-
-    return dots_html
-
-
 def highlight_win(val):
     if val > 0:
         color = "green"
@@ -56,28 +32,24 @@ if df.empty:
 # --- Summary table ---
 st.subheader("Summary Statistics")
 summary_df = calculate_cash_summary(df)
-summary_df["Current Form"] = summary_df["Current Form"].apply(render_form_dots)
-
-st.markdown(summary_df.to_html(escape=False, index=True), unsafe_allow_html=True)
 
 # --- Gradient coloring for kc_won ---
-# st.dataframe(
-#     summary_df.style.background_gradient(
-#         subset=["Kc won"],  # apply gradient only to this column
-#         cmap="RdYlGn",  # Red → Yellow → Green
-#     ).format(
-#         {
-#             "Total buy-ins": "{:.2f}",
-#             "Buy-ins per game": "{:.2f}",
-#             "Kc won per game": "{:.2f}",
-#             "Win standard deviation": "{:.2f}",
-#             "% in profit": "{:.2f}%",
-#         }
-#     ),
-#     hide_index=True,
-#     width="stretch",
-# )
-
+st.dataframe(
+    summary_df.style.background_gradient(
+        subset=["Kc won"],  # apply gradient only to this column
+        cmap="RdYlGn",  # Red → Yellow → Green
+    ).format(
+        {
+            "Total buy-ins": "{:.2f}",
+            "Buy-ins per game": "{:.2f}",
+            "Kc won per game": "{:.2f}",
+            "Win standard deviation": "{:.2f}",
+            "% in profit": "{:.2f}%",
+        }
+    ),
+    hide_index=True,
+    width="stretch",
+)
 
 # --- Game selector ---
 st.subheader("Game history")
