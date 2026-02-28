@@ -7,6 +7,11 @@ from ui.refresh import refresh_data_button
 
 VARIABLE = "HISTORY_SHEET_ID"
 
+FORM_MAPPING = {
+    1: "+",
+    0: "-",
+}
+
 
 def highlight_win(val):
     if val > 0:
@@ -32,6 +37,7 @@ if df.empty:
 # --- Summary table ---
 st.subheader("Summary Statistics")
 summary_df = calculate_cash_summary(df)
+summary_df["Current Form"] = summary_df["Current Form"].map(FORM_MAPPING)
 
 # --- Gradient coloring for kc_won ---
 st.dataframe(

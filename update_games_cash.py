@@ -30,7 +30,7 @@ def main():
     new_game_id = history_df["game_id"].max() + 1
     source_df = source_df.assign(
         game_id=new_game_id,
-        profit_flag=lambda df: np.where(df["win"] >= 0, "+", "-"),
+        profit_flag=lambda df: np.where(df["win"] >= 0, 1, 0),
     )[HISTORY_COLS]
 
     for row in source_df.values.tolist():
