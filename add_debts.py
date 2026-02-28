@@ -1,8 +1,8 @@
 import os
 
 from data_load.upload_debts import upload_debts
-from calculate_debts import calculate_debts
-from add_new_game import return_new_game
+from data_load.calculate_debts import calculate_debts
+from data_load.add_new_game import return_new_game
 
 
 DEBTS_SHEET_ID = os.environ["DEBTS_SHEET_ID"]
