@@ -37,7 +37,7 @@ if df.empty:
 # --- Summary table ---
 st.subheader("Summary Statistics")
 summary_df = calculate_cash_summary(df)
-summary_df["Current Form"] = summary_df["Current Form"].map(FORM_MAPPING)
+summary_df["Current Form"] = summary_df["Current Form"].apply(lambda ls: [FORM_MAPPING.get(x) for x in ls])
 
 # --- Gradient coloring for kc_won ---
 st.dataframe(
