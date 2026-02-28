@@ -30,7 +30,7 @@ def calculate_cash_summary(df: pd.DataFrame) -> pd.DataFrame:
     ).reset_index()
 
     statistics_advanced = statistics_advanced[statistics_advanced["games_played"] >= 3].assign(
-        form=lambda x: x.index.map(form),
+        form=lambda x: x["player"].map(form),
         percent_profit=lambda x: x["percent_profit"] * 100,
     )
 
