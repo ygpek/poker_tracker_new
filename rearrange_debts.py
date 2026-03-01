@@ -37,7 +37,8 @@ def main():
         win=lambda df: df["amount_to_receive"] - df["amount_to_send"],
     )
     calculated_debts = calculate_debts(total_debts)
-    upload_debts(calculated_debts, "Перерасчет долгов")
+    print(calculated_debts)
+    # upload_debts(calculated_debts, "Перерасчет долгов")
 
 
 if __name__ == "__main__":
