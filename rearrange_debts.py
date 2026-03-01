@@ -37,7 +37,7 @@ def main():
         win=lambda df: df["amount_to_receive"] - df["amount_to_send"],
     )
     calculated_debts = calculate_debts(total_debts)
-    print(total_debts)
+    print(payees_grouped)
     # upload_debts(calculated_debts, "Перерасчет долгов")
 
 
