@@ -8,7 +8,7 @@ from data_load.mark_debts_paid import mark_paid_debts
 def main():
     debts_df = load_debts()
 
-    active_debts = debts_df[debts_df["paid"] == False]
+    active_debts = debts_df[debts_df["paid"] == "FALSE"]
     # mark_paid_debts()
 
     payers_grouped = (
@@ -37,7 +37,7 @@ def main():
         win=lambda df: df["amount_to_receive"] - df["amount_to_send"],
     )
     calculated_debts = calculate_debts(total_debts)
-    print(active_debts)
+    print(calculated_debts)
     # upload_debts(calculated_debts, "Перерасчет долгов")
 
 
