@@ -9,7 +9,7 @@ def main():
     debts_df = load_debts()
 
     active_debts = debts_df[debts_df["paid"] == "FALSE"]
-    # mark_paid_debts()
+    mark_paid_debts()
 
     payers_grouped = (
         active_debts.groupby("from")
@@ -38,7 +38,7 @@ def main():
     )
     calculated_debts = calculate_debts(total_debts)
     print(calculated_debts)
-    # upload_debts(calculated_debts, "Перерасчет долгов")
+    upload_debts(calculated_debts, "Перерасчет долгов")
 
 
 if __name__ == "__main__":
