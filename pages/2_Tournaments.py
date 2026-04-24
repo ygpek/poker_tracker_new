@@ -55,7 +55,7 @@ selected_game = tournament_selector(game_ids, key="tournament_games")
 
 game_df = df[df["tournament_id"] == selected_game].sort_values(by="place", ascending=True, ignore_index=True)
 st.dataframe(
-    game_df.style.applymap(
+    game_df.style.map(
         highlight_win,
         subset=["place"],
     ).format(

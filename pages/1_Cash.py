@@ -92,7 +92,7 @@ game_df = df[df["game_id"] == selected_game][["game_id", "Player", "buy-in", "wi
     by="win", ascending=False, ignore_index=True
 )
 st.dataframe(
-    game_df.style.applymap(
+    game_df.style.map(
         highlight_win,
         subset=["win"],
     ).format(
