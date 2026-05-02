@@ -33,6 +33,7 @@ with st.expander("Create new event"):
         save_events(df)
 
         st.success("Event created ✅")
+        st.cache_data.clear()
         st.rerun()
 
 df = load_events()
