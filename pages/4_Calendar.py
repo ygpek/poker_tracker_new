@@ -70,7 +70,7 @@ else:
                         if new_player not in players:
                             players.append(new_player)
 
-                            df.loc[df["event_id"] == event_id, "participants"] = ",".join(players)
+                            df.loc[df["event_id"] == event_id, "players"] = ",".join(players)
 
                             save_events(df)
 
@@ -90,7 +90,7 @@ else:
                 if st.button("Remove", key=f"remove_btn_{event_id}"):
                     players.remove(player_to_remove)
 
-                    df.loc[df["event_id"] == event_id, "participants"] = ",".join(players)
+                    df.loc[df["event_id"] == event_id, "players"] = ",".join(players)
 
                     save_events(df)
                     st.success(f"{player_to_remove} removed")
