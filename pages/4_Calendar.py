@@ -114,9 +114,11 @@ else:
                         st.session_state[f"confirm_delete_{event_id}"] = False
 
                         st.success("Event deleted ✅")
+                        st.cache_data.clear()
                         st.rerun()
 
                 with col2:
                     if st.button("Cancel", key=f"cancel_delete_{event_id}"):
                         st.session_state[f"confirm_delete_{event_id}"] = False
+                        st.cache_data.clear()
                         st.rerun()
