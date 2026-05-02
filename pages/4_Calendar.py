@@ -6,7 +6,6 @@ from data_load.events import load_events, save_events
 st.title("📅 Poker Calendar")
 
 with st.expander("Create new event"):
-    title = st.text_input("Event title")
     event_date = st.date_input("Date", min_value=date.today())
     game_type = st.selectbox("Game Type", ["Cash", "Tournament"])
 
@@ -15,9 +14,8 @@ with st.expander("Create new event"):
 
         new_row = {
             "event_id": len(df) + 1,
-            "title": title,
             "date": event_date,
-            "game_type": game_type,
+            "type": type,
             "participants": "",
         }
 
@@ -28,5 +26,6 @@ with st.expander("Create new event"):
         st.rerun()
 
 df = load_events()
+df["date"] = pd.to_datetime(df["date"])
 
 active_events = df[df["date"] >= date.today()]
