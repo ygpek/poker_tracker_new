@@ -28,6 +28,7 @@ with st.expander("Create new event"):
             "time": event_time.strftime("%H:%M"),
             "type": game_type,
             "players": "",
+            "max_players": max_players,
         }
 
         df = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
