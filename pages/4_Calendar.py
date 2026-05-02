@@ -53,3 +53,45 @@ else:
             players = row["players"].split(",") if row["players"] else []
 
             st.write("👥 Players: " + (", ".join(players) if players else "Nobody yet"))
+
+            event_id = row["event_id"]
+
+            if st.button("Add Player", key=f"show_add_{event_id}"):
+                st.session_state[f"adding_player_{event_id}"] = True
+
+            if st.session_state.get(f"adding_player_{event_id}", False):
+
+                new_player = st.text_input("Player name", key=f"new_player_{event_id}")
+
+                if st.button("Confirm Add", key=f"confirm_add_{event_id}"):
+                    new_player = new_player.strip()
+
+                    if new_player:
+                        if new_player not in players:
+                            players.append(new_player)
+
+                            df.loc[df["event_id"] == event_id, "participants"] = ",".join(players)
+
+                            save_events(df)
+
+                            st.session_state[f"adding_player_{event_id}"] = False
+
+                            st.success(f"{new_player} added ✅")
+                            st.rerun()
+                        else:
+                            st.warning("Player already registered.")
+
+                # -------------------
+                # Remove player section
+                # -------------------
+            if players:
+                player_to_remove = st.selectbox("Remove player", players, key=f"remove_select_{event_id}")
+
+                if st.button("Remove", key=f"remove_btn_{event_id}"):
+                    players.remove(player_to_remove)
+
+                    df.loc[df["event_id"] == event_id, "participants"] = ",".join(players)
+
+                    save_events(df)
+                    st.success(f"{player_to_remove} removed")
+                    st.rerun()
