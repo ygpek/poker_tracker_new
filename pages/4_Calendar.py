@@ -17,6 +17,7 @@ with st.expander("Create new event"):
     event_date = st.date_input("Date", min_value=date.today())
 
     event_time = st.time_input("Time", value=time(19, 0))
+    max_players = st.number_input("Max players", min_value=1, max_value=9, value=9)
 
     if st.button("Create Event"):
         df = load_events()
@@ -27,6 +28,7 @@ with st.expander("Create new event"):
             "time": event_time.strftime("%H:%M"),
             "type": game_type,
             "players": "",
+            "max_players": int(max_players),
         }
 
         df = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
@@ -55,9 +57,19 @@ else:
             st.write("👥 Players: " + (", ".join(players) if players else "Nobody yet"))
 
             event_id = row["event_id"]
+            max_players = int(row["max_players"])
+            current_players = len(players)
 
-            if st.button("Add Player", key=f"show_add_{event_id}"):
-                st.session_state[f"adding_player_{event_id}"] = True
+            is_full = current_players >= max_players
+
+            st.write(f"👥 Players: {current_players}/{max_players}")
+
+            # Block adding if full
+            if is_full:
+                st.error("Event is full 🚫")
+            else:
+                if st.button("Add Player", key=f"show_add_{event_id}"):
+                    st.session_state[f"adding_player_{event_id}"] = True
 
             if st.session_state.get(f"adding_player_{event_id}", False):
 
