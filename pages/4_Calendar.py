@@ -39,6 +39,6 @@ else:
             st.write(f"📅 Date: {row['date']}")
             st.write(f"🎲 Type: {row['game_type']}")
 
-            participants = row["participants"].split(",") if row["participants"] else []
+            participants = row["players"].split(",") if row["players"] else []
 
             st.write("👥 Players: " + (", ".join(participants) if participants else "Nobody yet"))
