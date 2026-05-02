@@ -35,7 +35,6 @@ if active_events.empty:
 else:
     for _, row in active_events.iterrows():
         with st.container(border=True):
-            st.subheader(row["title"])
 
             st.write(f"📅 Date: {row['date']}")
             st.write(f"🎲 Type: {row['game_type']}")
