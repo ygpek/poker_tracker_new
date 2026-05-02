@@ -29,3 +29,17 @@ df = load_events()
 df["date"] = pd.to_datetime(df["date"], format="%m/%d/%Y")
 
 active_events = df[df["date"] >= date.today().strftime("%m/%d/%Y")]
+st.header("Upcoming Games")
+if active_events.empty:
+    st.info("No upcoming games scheduled.")
+else:
+    for _, row in active_events.iterrows():
+        with st.container(border=True):
+            st.subheader(row["title"])
+
+            st.write(f"📅 Date: {row['date']}")
+            st.write(f"🎲 Type: {row['game_type']}")
+
+            participants = row["participants"].split(",") if row["participants"] else []
+
+            st.write("👥 Players: " + (", ".join(participants) if participants else "Nobody yet"))
