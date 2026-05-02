@@ -30,7 +30,7 @@ with st.expander("Create new event"):
 
 df = load_events()
 
-active_events = df[df["date"] >= date.today().strftime("%m/%d/%Y")]
+active_events = df[df["date"] >= date.today()]
 st.header("Upcoming Games")
 if active_events.empty:
     st.info("No upcoming games scheduled.")
