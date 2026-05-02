@@ -12,31 +12,31 @@ with st.sidebar:
         st.cache_data.clear()
         st.rerun()
 
-with st.expander("Create new event"):
-    game_type = st.selectbox("Game Type", ["Cash", "Tournament"])
-    event_date = st.date_input("Date", min_value=date.today())
-
-    event_time = st.time_input("Time", value=time(19, 0))
-    max_players = st.number_input("Max players", min_value=1, max_value=9, value=9)
-
-    if st.button("Create Event"):
-        df = load_events()
-
-        new_row = {
-            "event_id": len(df) + 1,
-            "date": event_date.strftime("%Y-%m-%d"),
-            "time": event_time.strftime("%H:%M"),
-            "type": game_type,
-            "players": "",
-            "max_players": int(max_players),
-        }
-
-        df = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
-        save_events(df)
-
-        st.success("Event created ✅")
-        st.cache_data.clear()
-        st.rerun()
+# with st.expander("Create new event"):
+#     game_type = st.selectbox("Game Type", ["Cash", "Tournament"])
+#     event_date = st.date_input("Date", min_value=date.today())
+#
+#     event_time = st.time_input("Time", value=time(19, 0))
+#     max_players = st.number_input("Max players", min_value=1, max_value=9, value=9)
+#
+#     if st.button("Create Event"):
+#         df = load_events()
+#
+#         new_row = {
+#             "event_id": len(df) + 1,
+#             "date": event_date.strftime("%Y-%m-%d"),
+#             "time": event_time.strftime("%H:%M"),
+#             "type": game_type,
+#             "players": "",
+#             "max_players": int(max_players),
+#         }
+#
+#         df = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
+#         save_events(df)
+#
+#         st.success("Event created ✅")
+#         st.cache_data.clear()
+#         st.rerun()
 
 df = load_events()
 
