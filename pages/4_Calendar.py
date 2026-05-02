@@ -17,7 +17,6 @@ with st.expander("Create new event"):
     event_date = st.date_input("Date", min_value=date.today())
 
     event_time = st.time_input("Time", value=time(19, 0))
-    max_players = st.number_input("Max players", min_value=1, step=1, value=9)
 
     if st.button("Create Event"):
         df = load_events()
@@ -28,7 +27,6 @@ with st.expander("Create new event"):
             "time": event_time.strftime("%H:%M"),
             "type": game_type,
             "players": "",
-            "max_players": max_players,
         }
 
         df = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
