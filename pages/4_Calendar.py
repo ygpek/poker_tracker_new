@@ -1,22 +1,25 @@
 import streamlit as st
-from datetime import date
+from datetime import date, time
 import pandas as pd
 from data_load.events import load_events, save_events
 
 st.title("📅 Poker Calendar")
 
 with st.expander("Create new event"):
-    event_date = st.date_input("Date", min_value=date.today())
     game_type = st.selectbox("Game Type", ["Cash", "Tournament"])
+    event_date = st.date_input("Date", min_value=date.today())
+
+    event_time = st.time_input("Time", value=time(19, 0))
 
     if st.button("Create Event"):
         df = load_events()
 
         new_row = {
             "event_id": len(df) + 1,
-            "date": event_date,
-            "type": type,
-            "participants": "",
+            "date": event_date.strftime("%Y-%m-%d"),
+            "time": event_time.strftime("%H:%M"),
+            "game_type": game_type,
+            "players": "",
         }
 
         df = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
@@ -39,6 +42,6 @@ else:
             st.write(f"📅 Date: {row['date']}")
             st.write(f"🎲 Type: {row['game_type']}")
 
-            participants = row["players"].split(",") if row["players"] else []
+            players = row["players"].split(",") if row["players"] else []
 
-            st.write("👥 Players: " + (", ".join(participants) if participants else "Nobody yet"))
+            st.write("👥 Players: " + (", ".join(players) if players else "Nobody yet"))
