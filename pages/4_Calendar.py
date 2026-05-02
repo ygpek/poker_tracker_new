@@ -18,7 +18,7 @@ with st.expander("Create new event"):
             "event_id": len(df) + 1,
             "date": event_date.strftime("%Y-%m-%d"),
             "time": event_time.strftime("%H:%M"),
-            "game_type": game_type,
+            "type": game_type,
             "players": "",
         }
 
@@ -40,7 +40,7 @@ else:
         with st.container(border=True):
 
             st.write(f"📅 Date: {row['date']}")
-            st.write(f"🎲 Type: {row['game_type']}")
+            st.write(f"🎲 Type: {row['type']}")
 
             players = row["players"].split(",") if row["players"] else []
 
