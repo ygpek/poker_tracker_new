@@ -5,6 +5,13 @@ from data_load.events import load_events, save_events
 
 st.title("📅 Poker Calendar")
 
+with st.sidebar:
+    st.header("Filters")
+
+    if st.button("🔄 Refresh"):
+        st.cache_data.clear()
+        st.rerun()
+
 with st.expander("Create new event"):
     game_type = st.selectbox("Game Type", ["Cash", "Tournament"])
     event_date = st.date_input("Date", min_value=date.today())
