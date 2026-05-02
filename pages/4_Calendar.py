@@ -26,6 +26,6 @@ with st.expander("Create new event"):
         st.rerun()
 
 df = load_events()
-df["date"] = pd.to_datetime(df["date"])
+df["date"] = pd.to_datetime(df["date"], format="%m/%d/s%y")
 
-active_events = df[df["date"] >= date.today()]
+active_events = df[df["date"] >= date.today().strftime("%m/%d/%Y")]
