@@ -77,6 +77,7 @@ else:
                             st.session_state[f"adding_player_{event_id}"] = False
 
                             st.success(f"{new_player} added ✅")
+                            st.cache_data.clear()
                             st.rerun()
                         else:
                             st.warning("Player already registered.")
@@ -94,4 +95,5 @@ else:
 
                     save_events(df)
                     st.success(f"{player_to_remove} removed")
+                    st.cache_data.clear()
                     st.rerun()
