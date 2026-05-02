@@ -17,6 +17,7 @@ with st.expander("Create new event"):
     event_date = st.date_input("Date", min_value=date.today())
 
     event_time = st.time_input("Time", value=time(19, 0))
+    max_players = st.number_input("Max players", min_value=1, step=1, value=9)
 
     if st.button("Create Event"):
         df = load_events()
