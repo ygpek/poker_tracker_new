@@ -97,3 +97,26 @@ else:
                     st.success(f"{player_to_remove} removed")
                     st.cache_data.clear()
                     st.rerun()
+            if st.button("🗑 Delete Event", key=f"delete_event_{event_id}"):
+                st.session_state[f"confirm_delete_{event_id}"] = True
+
+            if st.session_state.get(f"confirm_delete_{event_id}", False):
+                st.warning("Are you sure you want to delete this event?")
+
+                col1, col2 = st.columns(2)
+
+                with col1:
+                    if st.button("Confirm Delete", key=f"confirm_delete_btn_{event_id}"):
+                        df = df[df["event_id"] != event_id]
+
+                        save_events(df)
+
+                        st.session_state[f"confirm_delete_{event_id}"] = False
+
+                        st.success("Event deleted ✅")
+                        st.rerun()
+
+                with col2:
+                    if st.button("Cancel", key=f"cancel_delete_{event_id}"):
+                        st.session_state[f"confirm_delete_{event_id}"] = False
+                        st.rerun()
