@@ -14,6 +14,8 @@ def load_events():
 
     records = ws.get_all_records()
     df = pd.DataFrame(records)
+    if not df.empty:
+        df["date"] = pd.to_datetime(df["date"]).dt.date
 
     return df
 

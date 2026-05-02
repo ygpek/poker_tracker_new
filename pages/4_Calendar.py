@@ -29,7 +29,6 @@ with st.expander("Create new event"):
         st.rerun()
 
 df = load_events()
-df["date"] = pd.to_datetime(df["date"], format="%m/%d/%Y")
 
 active_events = df[df["date"] >= date.today().strftime("%m/%d/%Y")]
 st.header("Upcoming Games")
@@ -40,6 +39,7 @@ else:
         with st.container(border=True):
 
             st.write(f"📅 Date: {row['date']}")
+            st.write(f"🕒 Time: {row['time']}")
             st.write(f"🎲 Type: {row['type']}")
 
             players = row["players"].split(",") if row["players"] else []
