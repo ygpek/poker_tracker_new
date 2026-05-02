@@ -26,4 +26,5 @@ def save_events(df):
     sh = client.open_by_key(sheet_id)
     ws = sh.sheet1
     ws.clear()
+    df["max_players"] = df["max_players"].fillna(0).astype(int)
     ws.update([df.columns.tolist()] + df.astype(str).values.tolist())
