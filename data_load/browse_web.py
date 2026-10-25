@@ -11,7 +11,7 @@ import os
 # Streamlit app URL from environment variable (or default)
 STREAMLIT_URLS = [
     "https://kartydengidvatuza.streamlit.app/",
-    "https://matchenginehackathon-i3jgbmutzakg3gntslaohx.streamlit.app/",
+    "https://matchenginehackathon-ik.streamlit.app/",
 ]
 
 
